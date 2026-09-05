@@ -113,3 +113,58 @@ select {
   color: #566078;
   padding: 2rem;
 }
+
+.contrast-toggle {
+  background: #172033;
+  border: 2px solid #172033;
+  border-radius: 0.5rem;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+}
+
+.contrast-toggle:focus-visible,
+select:focus-visible {
+  outline: 3px solid #f2b134;
+  outline-offset: 3px;
+}
+
+.high-contrast {
+  color: #000;
+  background: #fff;
+}
+
+.high-contrast .catalogue {
+  background: #fff;
+}
+
+.high-contrast .eyebrow,
+.high-contrast .game-genre,
+.high-contrast .intro,
+.high-contrast .results-heading span,
+.high-contrast .game-card p:last-child,
+.high-contrast .empty-state {
+  color: #000;
+}
+
+.high-contrast .controls,
+.high-contrast .game-card,
+.high-contrast .empty-state {
+  border-color: #000;
+}
+
+.high-contrast .controls,
+.high-contrast .game-card,
+.high-contrast .empty-state,
+.high-contrast select {
+  background: #fff;
+}
+
+.high-contrast .contrast-toggle {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+}

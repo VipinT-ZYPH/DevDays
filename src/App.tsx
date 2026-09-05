@@ -1,14 +1,23 @@
 /**
  * Renders the games catalogue and its publisher filter.
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { filterGames, games } from './lib/games';
 
 const publishers = [...new Map(games.map((game) => [game.publisherId, game.publisherName]))];
+const contrastStorageKey = 'devdays-high-contrast';
 
 export default function App() {
   const [publisherId, setPublisherId] = useState('all');
+  const [highContrast, setHighContrast] = useState(() => {
+    return window.localStorage.getItem(contrastStorageKey) === 'true';
+  });
   const filteredGames = useMemo(() => filterGames(games, publisherId), [publisherId]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('high-contrast', highContrast);
+    window.localStorage.setItem(contrastStorageKey, String(highContrast));
+  }, [highContrast]);
 
   return (
     <main className="catalogue">
@@ -16,6 +25,14 @@ export default function App() {
         <p className="eyebrow">DevDays collection</p>
         <h1>Explore games</h1>
         <p className="intro">Browse the catalogue and narrow it down by publisher.</p>
+        <button
+          className="contrast-toggle"
+          type="button"
+          aria-pressed={highContrast}
+          onClick={() => setHighContrast((enabled) => !enabled)}
+        >
+          {highContrast ? 'Use standard contrast' : 'Use high contrast'}
+        </button>
       </header>
 
       <section className="controls" aria-labelledby="filter-heading">

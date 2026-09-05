@@ -17,4 +17,21 @@ describe('App', () => {
     expect(screen.getByText('Moonlit Vale')).toBeInTheDocument();
     expect(screen.queryByText('Circuit Breakers')).not.toBeInTheDocument();
   });
+
+  it('persists the high-contrast preference across remounts', async () => {
+    const user = userEvent.setup();
+    const { unmount } = render(<App />);
+
+    await user.click(screen.getByRole('button', { name: 'Use high contrast' }));
+    expect(document.documentElement).toHaveClass('high-contrast');
+    expect(window.localStorage.getItem('devdays-high-contrast')).toBe('true');
+
+    unmount();
+    render(<App />);
+
+    expect(screen.getByRole('button', { name: 'Use standard contrast' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+  });
 });

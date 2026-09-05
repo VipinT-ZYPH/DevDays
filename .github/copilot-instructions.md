@@ -14,6 +14,8 @@ Install dependencies with `npm install`.
 - Production build: `npm run build`
 - Full test suite: `npm test`
 - One test file: `npm test -- src/lib/games.test.ts`
+- Browser end-to-end tests: `npm run test:e2e`
+- One browser test: `npm run test:e2e -- e2e/accessibility.spec.ts`
 
 ## Architecture
 
